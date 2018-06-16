@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>nslookup</title>
+    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+    <header class="header"></header>
+<div class="container">
+    <div class="col-xs-12 col-sm-9">
+        <h2>在线检测域名的主服务ip,CNAME,MX,TXT等</h2>
+        <div>
+            <form action="/nslookup" method="post">
+                <div class="scan">
+                    <input value="flyfood.name" name="domain" type="text" placeholder="域名"
+                           class="form-control" style="display:block" required>
+                    <button class="btn btn-info" type="submit"> 检 测 </button>
+                </div>
+            </form>
+            <div class="allout">
+                <table class="table table-hover">
+                    <tbody id="output">
+                        <tr th:each="r:${record}">
+                            <td th:text="${r.key}"></td>
+                            <td>
+                                <p th:each="v:${r.value}"><span th:text="${v}"><br/></span></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="portdetail">
+            <pre>
+A记录
+A记录是用来指定主机名（或域名）对应的IP地址记录。用户可以将该域名下的网站服务器指向到自己的web server上。同时也可以设置您域名的二级域名。
+CNAME
+CNAME是别名解析，别名解析是先将域名解析到主机别名再转跳到IP，这样主机IP改变了不用重新解析。
+MX记录
+MX记录邮件路由记录，用户可以将该域名下的邮件服务器指向到自己的mail server上，然后即可自行操控所有的邮箱设置。您只需在线填写您服务器的IP地址，即可将您域名下的邮件全部转到您自己设定相应的邮件服务器上。
+TXT记录
+可任意填写（可为空），通常用做SPF记录（反垃圾邮件）使用,如: admin IN TXT "管理员, 电话: 18800000000"
+</pre>
+        </div>
+        <div class="reward">
+             <div class="rewardbtn"></div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 sidebar" id="sidebar">
+        <div class="list-group">
+            <a href="/" class="list-group-item">端口扫描</a>
+            <a href="/nslookup" class="list-group-item">在线nslookup</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

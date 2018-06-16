@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title> 端口扫描</title>
+    <link rel="shortcut icon" href="static/favicon.ico" />
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+    <header class="header"></header>
+<div class="container">
+    <div class="col-xs-12 col-sm-9">
+        <h2>在线检测域名或者ip的端口是否开放</h2>
+        <div>
+            <form action="/scanport" method="post">
+                <div class="scan">
+                    <input required name="domain" type="text" placeholder="输入域名或者ip" value="hao.360.cn" class="form-control" id="ip" style="display:block">
+                    <textarea required name="port" class="form-control"
+                              style="display:block;margin-top:20px;" rows="5">80,21,22,23,25,53,110,443,1433,1863,2289,3306,5631,5632,5000,8080,9090</textarea>
+                    <span class="ospan">
+                        多个以","隔开，
+                       <span class="ospan_2">支持范围书写，例如:1,2,3,10-20,6,100-105,33</span>
+                     一次最多不能超过50个
+                   </span>
+                    <button class="btn btn-info" type="submit"> 端 口 扫 描 </button>
+                </div>
+            </form>
+            <div class="allout">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>域名/ip</th>
+                            <th>端口</th>
+                            <th>端口状态</th>
+                        </tr>
+                    </thead>
+                    <tbody id="output">
+                        <tr th:each="p:${checkPortList}">
+                            <th th:text="${p.domain}"></th>
+                            <th th:text="${p.port}"></th>
+                            <th th:if="${p.status} eq '开放'" style="color: #4cae4c">开放</th>
+                            <th th:if="${p.status} eq '关闭'" style="color: #444444">关闭</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="portdetail">
+            <pre>端口号的范围是从1～65535。其中1～1024是被RFC 3232规定好了的，被称作“众所周知的端口”(Well Known Ports)；从1025～65535的端口被称为动态端口（Dynamic Ports），可用来建立与其它主机的会话，也可由用户自定义用途。
+一些常见的端口号及其用途如下：
+21端口：FTP 文件传输服务
+22端口：SSH 端口
+23端口：TELNET 终端仿真服务
+25端口：SMTP 简单邮件传输服务
+53端口：DNS 域名解析服务
+80端口：HTTP 超文本传输服务
+110端口：POP3 “邮局协议版本3”使用的端口
+443端口：HTTPS 加密的超文本传输服务
+1433端口：MS SQL*SERVER数据库 默认端口号
+1521端口：Oracle数据库服务
+1863端口：MSN Messenger的文件传输功能所使用的端口
+3306端口：MYSQL 默认端口号
+3389端口：Microsoft RDP 微软远程桌面使用的端口
+5631端口：Symantec pcAnywhere 远程控制数据传输时使用的端口
+5632端口：Symantec pcAnywhere 主控端扫描被控端时使用的端口
+5000端口：MS SQL Server使用的端口
+8000端口：腾讯QQ
+</pre>
+        </div>
+        <div class="reward">
+             <div class="rewardbtn"></div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-3 sidebar" id="sidebar">
+        <div class="list-group">
+            <a href="/" class="list-group-item">端口扫描</a>
+            <a href="/nslookup" class="list-group-item">在线nslookup</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

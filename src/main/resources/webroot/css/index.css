@@ -1,0 +1,66 @@
+*{
+    margin:0;
+    padding:0
+}
+.header{
+    width:100%;
+    height: 51px;
+    background-color: #222;
+    border-color: #080808;
+}
+.ospan{
+    color: #ccc;
+    display: block;
+    font-size: 12px;
+}
+.ospan_2{
+    color: red;
+}
+.scan{
+     margin-top: 50px
+}
+.scan button{
+    margin-top:10px
+}
+.allout{
+    line-height: 30px;
+    margin-top:30px
+}
+.sidebar{
+    margin-top:20px;
+}
+.portdetail{
+    margin-top:30px;
+    font-size: 14px;
+}
+.portdetail pre{
+    line-height:30px
+}
+.reward{
+    text-align: center;
+    margin-top:20px
+}
+.rewardbtn{
+    width: 134px;
+    height: 49px;
+    display: inline-block;
+    background-image: url(../img/reward.png);
+    background-repeat: no-repeat;
+    background-position: 0 -196px;
+    border: 0;
+    cursor: pointer;
+}
+.rewardbtn:hover{
+    background-position: -134px -196px;
+}
+
+
+
+
+            /*.container {*/
+                /*padding-right: 15px;*/
+                /*padding-left: 15px;*/
+                /*margin-right: auto;*/
+                /*margin-left: auto;*/
+            /*}*/
+
